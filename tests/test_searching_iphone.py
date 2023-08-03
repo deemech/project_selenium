@@ -14,6 +14,4 @@ def test_searching_iphone():
     sph = Iphone_search_page(driver)
     sph.filters()
 
-    # try:
-    #     Iphone_search_page.get_filter_popular()
-    #     for product in
+    assert sph.get_filtered_price() >= 119000

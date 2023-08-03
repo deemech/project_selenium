@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -22,21 +24,22 @@ class Main_page(Base):
     # Getters
 
     def get_search_panel(self):
-        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable(By.XPATH, self.search_panel))
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.search_panel)))
 
     def get_burger_menu(self):
-        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable(By.XPATH, self.burger_menu))
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.burger_menu)))
 
     def get_zoo_staff(self):
-        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable(By.XPATH, self.zoo_staff))
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.zoo_staff)))
 
     def get_horses_staff(self):
-        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable(By.XPATH, self.horses_staff))
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.horses_staff)))
 
     # Actions
 
     def search_iphone(self):
-        self.get_search_panel().send_keys("iphone 13 pro max")
+        time.sleep(5)
+        self.get_search_panel().send_keys("iphone 13 pro max\n")
         print('searching for new phone')
 
     def click_burger_menu(self):
@@ -56,7 +59,6 @@ class Main_page(Base):
     def search(self):
         self.driver.get(self.url)
         self.driver.maximize_window()
-        self.get_current_url()
         self.search_iphone()
 
     def go_horses(self):
