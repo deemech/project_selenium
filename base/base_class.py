@@ -8,8 +8,8 @@ class Base():
     """ Methods Get current URL"""
 
     def get_current_url(self):
-        get_url = self.get_current_url()
-        print('current url', get_url)
+        get_url = self.driver.current_url
+        print("current url " + get_url)
 
     """ Method assert word """
 
@@ -22,8 +22,9 @@ class Base():
 
     def make_screenshot(self):
         now_date = datetime.datetime.utcnow().strftime('%Y.%m%d.%H.%M.%S')
-        screenshot_name = 'screenshot' + now_date + '.ng'
-        self.driver.save_screenshot('C:\\prog\\java_maven_test\\helloci\\final_progect\\screen')
+        screenshot_name = 'screenshot' + now_date + '.png'
+        # Да, тут дурацкий путь, в этой же папке проект на жаве
+        self.driver.save_screenshot('C:\\prog\\java_maven_test\\helloci\\final_progect\\screen\\' + screenshot_name)
 
     """ Method assert url """
 

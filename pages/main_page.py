@@ -3,6 +3,8 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.common.action_chains import ActionChains
+
 
 from base.base_class import Base
 
@@ -17,7 +19,7 @@ class Main_page(Base):
     # Locators
 
     search_panel = '//*[@id="searchInput"]'
-    burger_menu = '/html/body/div[1]/header/div/div[2]/div[1]/button'
+    burger_menu = '/html/body/div[1]/header/div/div[2]/div[1]/button/span'
     zoo_staff = '/html/body/div[2]/div/div[2]/ul/li[14]/a'
     horses_staff = '/html/body/div[2]/div/div[3]/div/div[14]/div/div[1]/ul/li[5]/a'
 
@@ -47,7 +49,7 @@ class Main_page(Base):
         print('Burger menu opened')
 
     def click_zoo_staff(self):
-        self.get_zoo_staff().click()
+        ActionChains(self.driver).move_to_element(self.get_zoo_staff()).perform()
         print('Zoo menu opened')
 
     def click_horses_staff(self):
@@ -64,7 +66,9 @@ class Main_page(Base):
     def go_horses(self):
         self.driver.get(self.url)
         self.driver.maximize_window()
-        self.get_current_url()
+        time.sleep(2)
         self.click_burger_menu()
+        time.sleep(2)
         self.click_zoo_staff()
+        time.sleep(2)
         self.click_horses_staff()
